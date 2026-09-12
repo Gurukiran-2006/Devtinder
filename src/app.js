@@ -3,29 +3,15 @@ const app=express();
 
 
 
-app.use("/text",(req,res)=>{
-    res.send("hello from the dashboard gk tinder");
-})
-app.use("/server",(req,res)=>{
-    res.send("hello from the srever");
-});
 
-app.use("/user",(req,res)=>{
-    res.send("hey hi how are you ?");
-});
 
-app.get("/user",(req,res)=>{
+app.get("/user/:userId",(req,res)=>{
+    console.log(req.params.userId);
 res.send({firstname : "gk",
           lastname:"gowda"});
 });
 
-app.post("/user",(req,res)=>{
-res.send("data us saved successfully in the database")
-});
 
-app.delete("/user",(req,res)=>{
-    res.send("deleted user successfully");
-})
 
 
 
