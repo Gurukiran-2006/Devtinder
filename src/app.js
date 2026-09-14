@@ -2,30 +2,35 @@ const express=require("express");
 
 const app=express();
 
-const {adminauth,userauth}=require("./middlewares/auth");
+const connectDB=require("./config/database");
 
-app.use("/admin",adminauth);
+const User1=require("./models/user")
 
-app.get("/admin/getAllData",(req,res)=>{
-    console.log("user data is been transferred");
-    res.send("all user data is sent");
+app.use("/signup",async (req,res)=>{
+    const user=new User1({
+        firstName:"abc",
+        lastName:"def",
+        email:"xyz@123",
+        age:20, 
+        password:123456789
+    });
+
+    await user.save();
+    res.send("user added successfully");
 });
 
-app.get("/admin/deleteUser",(req,res)=>{
- console.log("the given user data is been successfully deleted");
- res.send("user dataa is been deleted successfully");
-});
+connectDB()
+.then(()=>{
+    console.log("database connection is estabilised");
 
-app.post("/user/login",(req,res)=>{
-res.send("user logged in successfully");
-});
-
-app.get("/user/profile",userauth,(req,res)=>{
-    console.log("get me the particular user data");
-    res.send("the given user data is been sent");
-})
-
-app.listen(7777,()=>{
+    app.listen(7777,()=>{
     console.log("server is listening on port 7777....")
 });
+
+})
+.catch((err)=>{
+   console.log("unable to connect to the database");
+});
+
+
 

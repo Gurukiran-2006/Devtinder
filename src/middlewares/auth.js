@@ -1,6 +1,6 @@
 const adminauth=(req,res,next)=> {
 console.log("admin auth is getting checked");
-const token="xyzasas";
+const token="xyz";
 const ischeckadminauth= token==="xyz";
 if(!ischeckadminauth){
     res.status(401).send("unauthorized access");
