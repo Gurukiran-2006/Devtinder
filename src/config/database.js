@@ -9,9 +9,11 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
     await mongoose.connect(
-        "mongodb+srv://User:Password@devtinderpro.rpt8yda.mongodb.net/devTinder"
+        "mongodb+srv://db_user:password@devtinderpro.rpt8yda.mongodb.net/devTinder"
     );
 };
+
+
 
 module.exports=connectDB;
 
