@@ -1,4 +1,6 @@
 const validator=require("validator");
+const bcrypt=require("bcrypt");
+
 
 const validateSignupData=(userData)=>{
     
@@ -23,5 +25,12 @@ const validateSignupData=(userData)=>{
          return true;
 };
 
+const validateEditProfile=(userData)=>{
+ const isAllowed=["firstName","lastName","age","gender","skills","about","photourl"];
 
-module.exports={validateSignupData};
+  const editAllowed=Object.keys(userData).every(field=>isAllowed.includes(field));
+
+  return editAllowed;
+};
+
+module.exports={validateSignupData,validateEditProfile};
